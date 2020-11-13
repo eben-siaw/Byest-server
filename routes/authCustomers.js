@@ -67,13 +67,13 @@ router.post('/login',(req,res)=>{
     const {email, password} = req.body; 
 
     if(!email || !password){ 
-       return res.status(422).json({error:"please add email or password"})
+       return res.json({error: "please add email or password"})
     }
     Customers.findOne({email:email})
     .then(savedUser=>{ 
 
         if(!savedUser){
-           return res.status(422).json({error:"Invalid Email or password"})
+           return res.json({error:"Invalid email or password"})
         }
         bcrypt.compare(password, savedUser.password) 
         .then(doMatch=>{ 
@@ -87,18 +87,18 @@ router.post('/login',(req,res)=>{
                     phone: savedUser.Phone
                 }
 
-               const token = jwt.sign(payload, process.env.jwtSecret, { 
+               let token = jwt.sign(payload, process.env.jwtSecret, { 
                    expiresIn: 14440
                })
            
-               res.json({token, savedUser})
+               res.send(token);
             }
             else{
-                return res.status(422).json({error:"Invalid Email or password"})
+                return res.json({error:"Invalid Email or password"})
             }
         })
-        .catch(err=>{
-            console.log(err)
+        .catch(error => {
+            res.json({error: "User does not exist!"})
         })
     })
 })
