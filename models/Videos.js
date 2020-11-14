@@ -32,4 +32,4 @@ const VideoAdsSchema = mongoose.Schema({
 }) 
 
 
-module.exports = mongoose.model('VideoAds', VideoAdsSchema)
+module.exports = mongoose.model('VideoAds', VideoAdsSchema);

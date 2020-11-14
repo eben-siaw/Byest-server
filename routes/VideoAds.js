@@ -12,7 +12,7 @@ router.post("/saveVideoAds", (req, res, next) => {
 
     newAds.save((error, videos) => { 
     if(error) { 
-       return res.status(400).json({error: "Failed to submit add"}); 
+       return res.status(400).json({error: "Failed to submit ad"}); 
     } 
     return res.status(200).json({message: "Ad submitted successfully", videos}) 
     });
@@ -46,7 +46,7 @@ router.get("/getVideoAds", (req, res) => {
              error: 'Your request could not be processed. Please try again.'
            });
          }
-         return res.status(200).json(videos);
+         return res.status(200).json({success: "true", videos});
     });
 
 })

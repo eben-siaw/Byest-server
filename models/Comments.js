@@ -13,8 +13,9 @@ const CommentSchema = mongoose.Schema({
   ref: 'User'
  },
  
- postId : { 
-  type: Schema.Types.ObjectId    
+ PostId : { 
+  type: Schema.Types.ObjectId, 
+  ref: 'Video'    
  },
 
  message: { 

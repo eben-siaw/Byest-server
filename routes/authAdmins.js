@@ -28,7 +28,7 @@ router.post('/register', (req, res) => {
     Admin.findOne({ email: req.body.email }) 
 	.then(user => {
 		if (user) {
-			return res.status(400).json({ message: "email already exists" });
+			return res.json({error: "email already exists" });
 		} else {
 			const newUser = new Admin(req.body);
 
@@ -40,7 +40,7 @@ router.post('/register', (req, res) => {
 					newUser
 						.save()
 						.then(user => res.json(user))
-						.catch(err => console.log(err));
+						.catch(error => res.json({error: "Unable to register!"}) );
 				});
 			});
 		}
@@ -55,12 +55,12 @@ router.post('/login', (req,res) => {
     const {email, password} = req.body; 
 
     if(!email || !password){ 
-       return res.status(422).json({error:"please add email or password"})
+       return res.json({error:"please add email or password"})
     }
     Admin.findOne({email:email})
     .then(savedUser=>{
         if(!savedUser){
-           return res.status(422).json({error:"Invalid Email or password"})
+           return res.json({error:"Invalid email or password"})
         }
         bcrypt.compare(password, savedUser.password)
         .then(doMatch=>{ 
@@ -79,16 +79,16 @@ router.post('/login', (req,res) => {
                 expiresIn: 31556926
             }); 
             
-             res.send(token)
+              res.send(token)
 
               return res.status(200).json({token, savedUser})
             }
             else{
-                return res.status(422).json({error:"Invalid Email or password"})
+                return res.json({error:"Invalid email or password"})
             }
         })
         .catch(error=>{
-            console.log(error)
+            res.json({error: "User not found!"})
         })
     })
 })

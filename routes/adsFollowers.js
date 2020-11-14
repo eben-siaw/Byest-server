@@ -6,16 +6,16 @@ const Follower = require("../models/Followers");
 
 router.use(cors());
 
-//Followers and following
+//Followers and following 
 
-
+// followers number of a post
 router.post("/followers", (req, res) => {
 
-    Follower.find({ "userTo": req.body.userTo })
+    Follower.find({ "PostId": req.body.PostId })
     .exec((err, follow) => {
         if(err) return res.status(400).send(err)
 
-        res.status(200).json({ success: true, followers: follow.length  })
+        res.status(200).json({ success: true, followers: follow.length})
     })
 
 });
@@ -24,7 +24,7 @@ router.post("/followers", (req, res) => {
 
 router.post("/following", (req, res) => {
 
-    Follower.find({ "userTo": req.body.userTo , "userFrom": req.body.userFrom })
+    Follower.find({ "PostId": req.body.userTo , "userFrom": req.body.userFrom })
     .exec((err, follow) => {
         if(err) return res.status(400).send(err)
 
@@ -34,7 +34,7 @@ router.post("/following", (req, res) => {
             result = true
         }
 
-        return res.status(200).json({ success: true, following: result  })
+        return res.status(200).json({ success: true, following: result })
     })
 
 });
