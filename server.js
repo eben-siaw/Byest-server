@@ -13,11 +13,11 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 
 
-const config = 'mongodb://localhost:27017/mekbase'
+//const config = 'mongodb://localhost:27017/mekbase'
 
-//const cloud = process.env.mongoURI;
+const cloud = process.env.mongoURI;
 
-const connect = mongoose.connect(config, {useCreateIndex: true, useUnifiedTopology: true, useNewUrlParser:true})
+const connect = mongoose.connect(process.env.mongoURI, {useCreateIndex: true, useUnifiedTopology: true, useNewUrlParser:true})
 .then(() => console.log("Mongo is Connected...")) 
 .catch(err => console.log(err));
 
