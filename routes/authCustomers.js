@@ -40,12 +40,6 @@ router.post('/addCustomer',(req,res) =>{
               user.password = hash;
                  user.save()
                  .then(user=>{
-                  /*   transporter.sendMail({
-                         to:user.email,
-                        from:"info.mekexpress@gmail.com",
-                        subject:"Welcome from Mekexpress.",
-                        html:"<h1>You have signed up as a customer. Find products which will interest you.</h1>"
-                     })*/
                    return res.status(200).json({message:"saved successfully", user})
                  })
                  .catch(error =>{

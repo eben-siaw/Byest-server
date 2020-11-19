@@ -25,7 +25,7 @@ const VideoAdsSchema = mongoose.Schema({
  },
  
  createdAt: { 
-   type: String,
+  type: Date,
   default: Date.now
  }
 

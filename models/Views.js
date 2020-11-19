@@ -8,14 +8,8 @@ PostId: {
  ref: 'VideoAds'    
 }, 
 
-userTo : { 
- type: Schema.Types.ObjectId, 
- ref: 'Admin'
-}, 
-
 userFrom: { 
- type: Schema.Types.ObjectId, 
- ref: 'User'   
+ type: Schema.Types.ObjectId,    
 }, 
 
 updateViews: { 

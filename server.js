@@ -13,9 +13,9 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 
 
-//const config = 'mongodb://localhost:27017/mekbase'
+const config = 'mongodb://localhost:27017/mekbase'
 
-const cloud = process.env.mongoURI;
+//const cloud = process.env.mongoURI;
 
 const connect = mongoose.connect(process.env.mongoURI, {useCreateIndex: true, useUnifiedTopology: true, useNewUrlParser:true})
 .then(() => console.log("Mongo is Connected...")) 
@@ -31,6 +31,7 @@ const Views = require("./routes/Views");
 const Comments = require("./routes/adsComments");
 const Likes = require("./routes/adsLikesDisLikes"); 
 const Followers = require("./routes/adsFollowers");
+
 
 app.use("/admins", Admin); 
 app.use("/customers", Customers); 

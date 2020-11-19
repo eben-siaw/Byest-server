@@ -15,7 +15,7 @@ router.post("/saveVideoAds", (req, res, next) => {
        return res.status(400).json({error: "Failed to submit ad"}); 
     } 
     return res.status(200).json({message: "Ad submitted successfully", videos}) 
-    });
+  });
     
 }) 
 
@@ -35,6 +35,19 @@ router.get("/getVideoAds/:admin", (req, res) => {
 
 }) 
  
+// remove a video
+router.delete("/removeVideo/:id", (req, res) => { 
+
+  Videos.findOneAndDelete({ "_id": req.params.id })  
+       .then(video => {
+         res.json(video);
+     })
+     .catch(error => {
+         res.json({ error });
+     });  
+     
+}) 
+
  // get all ads
 router.get("/getVideoAds", (req, res) => { 
 

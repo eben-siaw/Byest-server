@@ -16,6 +16,10 @@ const AdminSchema = mongoose.Schema({
   required: true
   }, 
   
+  resetToken: String,  
+  
+  expireToken: String,
+
   phone : { 
   type: Number
   },

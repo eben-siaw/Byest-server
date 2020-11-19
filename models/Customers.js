@@ -11,14 +11,6 @@ const CustomerSchema = mongoose.Schema({
   type: String
  }, 
 
- Phone : { 
- type: String
- },
-
- address: { 
-  type: String
- },
-
 password: { 
  type: String
 }
